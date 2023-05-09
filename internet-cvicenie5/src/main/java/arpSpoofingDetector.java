@@ -14,7 +14,7 @@ import org.pcap4j.packet.EthernetPacket;
 import org.pcap4j.packet.IpV4Packet;
 import org.pcap4j.packet.Packet;
 
-public class Pcap4jExample {
+public class arpSpoofingDetector {
 
 	public static void main(String[] args) throws Exception {
 
@@ -48,10 +48,8 @@ public class Pcap4jExample {
 					System.out.print("Target MAC: " + arp.getHeader().getDstHardwareAddr().toString());
 					System.out.println(" Target IP: " + arp.getHeader().getDstProtocolAddr().getHostAddress());
 
-					if (detect(arp, adress)) {
+					if (!detect(arp, adress))
 						System.out.println("WARNING!");
-						System.out.println(adress.size());
-					}
 
 					System.out.println();
 				}
@@ -69,7 +67,7 @@ public class Pcap4jExample {
 
 			String slovo = sc.next();
 
-			if (slovo.equals("Source")) {
+			if (slovo.equals("Sender")) {
 
 				String s = sc.next();
 
